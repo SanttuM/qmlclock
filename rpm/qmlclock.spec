@@ -10,49 +10,37 @@ Name:       qmlclock
 
 Summary:    QML clocks application
 Version:    0.0.0
-Release:    1
+Release:    1%{?dist}
 Group:      Applications/System
 License:    BSD
 URL:        http://github.com/nemomobile/qmlclock
-Source0:    %{name}-%{version}.tar.bz2
-Source100:  qmlclock.yaml
-Requires:   nemo-qml-plugin-time
-Requires:   qt-components
-Requires:   mapplauncherd-booster-qtcomponents
+Source0:    %{name}-%{version}.tar.gz
+Requires:   nemo-qml-plugin-time-qt5
+Requires:   nemo-qml-plugin-alarms-qt5
+Requires:   qt-components-qt5
+Requires:   mapplauncherd-booster-qtcomponents-qt5
+BuildRequires:  pkgconfig(Qt5Core)
 BuildRequires:  pkgconfig(QtDeclarative)
 BuildRequires:  pkgconfig(QtGui)
-BuildRequires:  pkgconfig(qdeclarative-boostable)
+BuildRequires:  mapplauncherd-qt5 >= 1.1.0
 BuildRequires:  desktop-file-utils
+BuildRequires:  pkgconfig(qdeclarative5-boostable)
+BuildRequires:  pkgconfig(Qt5Quick)
 
 %description
-Clocks application written using QML
-
+Clocks application written using QML. Implements UI for end user to handle alarms.
 
 %prep
-%setup -q -n %{name}-%{version}
-
-# >> setup
-# << setup
+%setup -q
 
 %build
-# >> build pre
-# << build pre
 
-%qmake 
-
+qmake -qt=5 -recursive
 make %{?jobs:-j%jobs}
-
-# >> build post
-# << build post
 
 %install
 rm -rf %{buildroot}
-# >> install pre
-# << install pre
 %qmake_install
-
-# >> install post
-# << install post
 
 desktop-file-install --delete-original       \
   --dir %{buildroot}%{_datadir}/applications             \
@@ -62,5 +50,4 @@ desktop-file-install --delete-original       \
 %defattr(-,root,root,-)
 %{_bindir}/qmlclock
 %{_datadir}/applications/qmlclock.desktop
-# >> files
-# << files
+

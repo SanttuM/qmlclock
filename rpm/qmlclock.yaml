@@ -6,19 +6,23 @@ Group: Applications/System
 License: BSD
 URL: http://github.com/nemomobile/qmlclock
 Sources:
-    - "%{name}-%{version}.tar.bz2"
+    - "%{name}-%{version}.tar.gz"
 Description: |
     Clocks application written using QML
 
 PkgConfigBR:
     - QtDeclarative
     - QtGui
-    - qdeclarative-boostable
+    - mapplauncherd-qt5
+    - Qt5Core
+    - Qt5Quick
+
 
 Requires:
-    - nemo-qml-plugin-time
-    - qt-components
-    - mapplauncherd-booster-qtcomponents
+    - nemo-qml-plugin-time-qt5
+    - nemo-qml-plugin-alarms-qt5
+    - qt-components-qt5
+    - mapplauncherd-booster-qtcomponents-qt5
 
 Configure: none
 Builder: qmake
