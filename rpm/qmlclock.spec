@@ -28,7 +28,7 @@ BuildRequires:  pkgconfig(qdeclarative5-boostable)
 BuildRequires:  pkgconfig(Qt5Quick)
 
 %description
-Clocks application written using QML. Implements UI for end user to handle alarms.
+Clocks application written using QML.
 
 %prep
 %setup -q
